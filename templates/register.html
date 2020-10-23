@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Graduation Work{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{% static "login.css"%}">
+{% endblock %}
+{% block content %}
+<body class="text-center" data-gr-c-s-loaded="true">
+
+
+<form class="form-signin" id="add_form" method="post">
+    {% csrf_token %}
+  <input type="hidden" name="next" value="">
+  <img class="mb-4" src="{% static "logo.svg"%}" alt="" width="72" height="72">
+
+
+  <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
+  <label for="inputUsername" class="sr-only">Username</label>
+  <input type="username" id="inputUsername" class="form-control" placeholder="Username" name="username"
+         value="" required="" autofocus="" data-cip-id="inputUsername">
+  <label for="inputEmail" class="sr-only">Email</label>
+  <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email"
+         value="" required="" autofocus="" data-cip-id="inputEmail">
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" class="form-control" placeholder="Пароль"
+         name="password" required="" data-cip-id="inputPassword">
+
+  <button form="add_form" class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрировться</button>
+  <p class="mt-5 mb-3 text-muted">© Просто магазин 2018</p>
+</form>
+{% endblock %}
