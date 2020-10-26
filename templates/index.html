@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load staticfiles %}
 {% block title %}Graduation Work{% endblock %}
 
 
@@ -16,28 +16,15 @@
 
   <div class="container mb-5">
     <!-- Example row of columns -->
+      {% for item in list_products %}
     <div class="row">
 
       <div class="col-md-4">
-        <h2>Nexus 5x</h2>
+        <h2>{{ item.name }}</h2>
+{#        {{ item.photo }}#}
+        <a href="{% url 'product_page' item.id%}">
 
-        <a href="product/">
-
-          <img src="{% static "nexus5x.webp"%}" width="180">
-
-        </a>
-
-        <form>
-          <input type="submit" class="btn btn-secondary" value="Добавить в корзину »">
-        </form>
-      </div>
-
-      <div class="col-md-4">
-        <h2>iPhone 7</h2>
-
-        <a href="./phone.html">
-
-          <img src="{% static "iphone7.webp"%}" width="180">
+          <img src="{{  item.photo.url }}" width="180">
 
         </a>
 
@@ -46,21 +33,10 @@
         </form>
       </div>
 
-      <div class="col-md-4">
-        <h2>Pixel 2</h2>
 
-        <a href="./phone.html">
-
-          <img src="{% static "pixel2.webp"%}" width="180">
-
-        </a>
-
-        <form>
-          <input type="submit" class="btn btn-secondary" value="Добавить в корзину »">
-        </form>
-      </div>
 
     </div>
+      {% endfor %}
   </div> <!-- /container -->
 
   <div class="jumbotron">

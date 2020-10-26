@@ -19,12 +19,12 @@ from backend import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.main_page, name='main_page'),
-    path('basket/', views.basket_page, name='basket_page'),
+    path('', views.HomeListView.as_view(), name='main_page'),
+    path('cart', views.basket_page, name='cart_page'),
     path('register', views.RegisterUserView.as_view(), name='register_page'),
     path('login', views.MyLoginView.as_view(), name='login_page'),
     path('logout', views.MyLogout.as_view(), name='logout_page'),
     path('category/', views.category_page, name='category_page'),
-    path('product/', views.product_page, name='product_page'),
+    path('product/<int:pk>', views.ProductView.as_view(), name='product_page'),
     path('empty_section/', views.empty_page, name='empty_page'),
 ]
