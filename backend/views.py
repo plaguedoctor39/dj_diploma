@@ -3,13 +3,41 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic.edit import FormMixin
 
-from backend.forms import AuthUserForm, RegisterUserForm
+from backend.forms import AuthUserForm, RegisterUserForm, CommentForm
+from backend.models import Product
 
 
-def main_page(request):
-    return render(request, 'index.html')
+class HomeListView(ListView):
+    model = Product
+    template_name = 'index.html'
+    context_object_name = 'list_products'
+
+
+class ProductView(FormMixin, DetailView):
+    model = Product
+    template_name = 'phone.html'
+    context_object_name = 'get_product'
+    form_class = CommentForm
+
+    def get_success_url(self):
+        return reverse_lazy('product_page', kwargs={'pk': self.get_object().id})
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.product = self.get_object()
+        self.object.author = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
 
 def category_page(request):

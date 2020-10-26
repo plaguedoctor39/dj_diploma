@@ -11,7 +11,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Описание')
     price = models.PositiveIntegerField(verbose_name='Цена')
     categories = models.ManyToManyField('Category', related_name='products', verbose_name='Категории')
-    photo = models.ImageField(verbose_name='Фотография товара')
+    photo = models.ImageField(verbose_name='Фотография товара', upload_to='products_img')
 
     class Meta:
         verbose_name = 'Товар'
@@ -29,7 +29,14 @@ class Article(models.Model):
         verbose_name_plural = 'Статьи'
 
 
-class Basket(models.Model):
+class Comments(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт', blank=True, null=True, related_name='comments_products' )
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор комментария', blank=True, null=True )
+    create_date = models.DateTimeField(auto_now=True)
+    text = models.TextField(verbose_name='Текст комментария')
+
+
+class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     products = models.ManyToManyField('Product', verbose_name='Товары')
 
