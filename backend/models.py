@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser, User
 from django.db import models
 
-
+CHOICES_LIST = ((1, '1',), (2, '2',), (3, '3',), (4, '4',), (5, '5',))
 # class User(AbstractUser):
 #     pass
 
@@ -34,6 +34,7 @@ class Comments(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор комментария', blank=True, null=True )
     create_date = models.DateTimeField(auto_now=True)
     text = models.TextField(verbose_name='Текст комментария')
+    rating = models.IntegerField(default=False, verbose_name='Рейтинг', choices=CHOICES_LIST)
 
 
 class Cart(models.Model):

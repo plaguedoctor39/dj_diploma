@@ -48,7 +48,7 @@ def product_page(request):
     return render(request, 'phone.html')
 
 
-def basket_page(request):
+def cart_page(request):
     return render(request, 'cart.html')
 
 
