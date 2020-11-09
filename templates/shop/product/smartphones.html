@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "shop/base.html" %}
 {% load staticfiles %}
 
 {% block title %}Graduation Work{% endblock %}
@@ -10,73 +10,31 @@
   <div class="container">
     <!-- Example row of columns -->
 
-    <h1>Смартфоны</h1>
-
+    <h1>{{ category.name }}</h1>
+    {% for product in category.products.all %}
     <div class="row">
 
 
       <div class="col-md-4">
-        <h2>Nexus 5x</h2>
+        <h2>{{ product.name }}</h2>
 
-        <a href="./phone.html">
+        <a href="{{ product.get_absolute_url }}">
 
-          <img src="{% static "nexus5x.webp"%}" width="180">
-
-        </a>
-
-        <form>
-          <input type="submit" class="btn btn-secondary" value="Добавить в корзину »">
-        </form>
-      </div>
-
-
-      <div class="col-md-4">
-        <h2>iPhone 7</h2>
-
-        <a href="./phone.html">
-
-          <img src="{% static "iphone7.webp"%}" width="180">
+          <img src="{{  product.photo.url }}" width="180">
 
         </a>
 
-        <form>
-          <input type="submit" class="btn btn-secondary" value="Добавить в корзину »">
-        </form>
+        <form action="{% url "cart:cart_add" product.id %}" method="post">
+    {{ cart_product_form }}
+    {% csrf_token %}
+    <input type="submit" value="Добавить в корзину">
+</form>
       </div>
 
 
-      <div class="col-md-4">
-        <h2>Pixel 2</h2>
 
-        <a href="./phone.html">
-
-          <img src="{% static "pixel2.webp"%}" width="180">
-
-        </a>
-
-        <form>
-          <input type="submit" class="btn btn-secondary" value="Добавить в корзину »">
-        </form>
       </div>
-
-    </div>
-
-    <div class="row">
-
-
-      <div class="col-md-4">
-        <h2>Samsung S8</h2>
-
-        <a href="./phone.html">
-
-          <img src="{% static "samsungs8.webp"%}" width="180">
-
-        </a>
-
-        <form>
-          <input type="submit" class="btn btn-secondary" value="Добавить в корзину »">
-        </form>
-      </div>
+      {% endfor %}
 
 
     </div> <!-- /container -->

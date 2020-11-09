@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "shop/base.html" %}
 {% load static %}
 {% block title %}Graduation Work{% endblock %}
 {% block content %}
@@ -21,6 +21,7 @@
           </div>
           <span class="text-muted">{{ item.quantity }}</span>
             <a href="{% url "cart:cart_remove" product.id%}">Удалить</a>
+{#            <span class="text-muted">{{ item.price * item.quantity }}руб.</span>#}
         </li>
 
 
@@ -28,6 +29,7 @@
       </ul>
             {% endwith %}
 {% endfor %}
+    Итоговая сумма: {{ cart.get_total_price }}руб.
       <form class="card p-2">
         <button type="submit" class="btn btn-secondary">Заказать</button>
       </form>

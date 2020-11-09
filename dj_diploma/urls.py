@@ -13,20 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from backend import views
 from dj_diploma import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.HomeListView.as_view(), name='main_page'),
-    path('cart', views.cart_page, name='cart_page'),
-    path('register', views.RegisterUserView.as_view(), name='register_page'),
-    path('login', views.MyLoginView.as_view(), name='login_page'),
-    path('logout', views.MyLogout.as_view(), name='logout_page'),
-    path('category/', views.category_page, name='category_page'),
-    path('product/<int:pk>', views.ProductView.as_view(), name='product_page'),
-    path('empty_section/', views.empty_page, name='empty_page'),
+    url(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
+    url(r'^', include(('backend.urls', 'backend'), namespace='shop')),
+    # path('', views.HomeListView.as_view(), name='main_page'),
+    # # path('cart', views.cart_page, name='cart_page'),
+    # path('register', views.RegisterUserView.as_view(), name='register_page'),
+    # path('login', views.MyLoginView.as_view(), name='login_page'),
+    # path('logout', views.MyLogout.as_view(), name='logout_page'),
+    # path('category/', views.category_page, name='category_page'),
+    # path('product/<int:pk>', views.ProductView.as_view(), name='product_page'),
+    # path('empty_section/', views.empty_page, name='empty_page'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

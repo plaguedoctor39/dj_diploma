@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backend'
+    'backend',
+    'cart'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'dj_diploma.urls'
+
+CART_SESSION_ID = 'cart'
 
 TEMPLATES = [
     {

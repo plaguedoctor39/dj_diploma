@@ -45,3 +45,20 @@ class CommentForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
         self.fields['text'].widget = Textarea(attrs={'rows': 5})
+
+
+
+# class OrderForm(forms.ModelForm):
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.fields['order_date'].label = 'Дата получения заказа'
+#
+#     order_date = forms.DateField(widget=forms.TextInput(attrs={'type': 'date'}))
+#
+#     class Meta:
+#         model = Order
+#         fields = (
+#             'first_name', 'last_name', 'phone', 'address', 'buying_type', 'order_date', 'comment'
+#         )
+
