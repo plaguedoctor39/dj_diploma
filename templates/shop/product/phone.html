@@ -15,22 +15,22 @@
     <!-- Example row of columns -->
     <div class="row">
       <div class="col-md-12">
-        <h2>{{ get_product.name }}</h2>
+        <h2>{{ product.name }}</h2>
 
-        <img src="{{ get_product.photo.url }}" width="120">
+        <img src="{{ product.photo.url }}" width="120">
 
         <p>{{ get_product.description }}</p>
-        <form method="post" action="./cart/">
-          <input type="hidden" name="csrfmiddlewaretoken"
-                 value="N4vcBqzjoYkU7OTDuAT8hq8srpvYX44nJsswuP7e3EYg0Hq8DgxuR0eiXWbSr5RZ">
-          <input type="hidden" name="merchandise_id" value="1">
-          <input type="submit" class="btn btn-secondary" value="Добавить в корзину »">
+        <form action="{% url "cart:cart_add" product.id %}" method="post">
+    {{ cart_product_form }}
+    {% csrf_token %}
+    <input type="submit" value="Добавить в корзину">
+</form>
         </form>
       </div>
     </div>
     <hr>
 {#    {{ get_product.comments_products.all }}#}
-    {% for item in get_product.comments_products.all %}
+    {% for item in product.comments_products.all %}
         <ul>
         <li>
     <span>Автор: {{ item.author }}</span><br>

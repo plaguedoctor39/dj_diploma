@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "shop/base.html" %}
 {% load staticfiles %}
 {% block title %}Graduation Work{% endblock %}
 
@@ -16,12 +16,12 @@
 
   <div class="container mb-5">
     <!-- Example row of columns -->
-      {% for item in list_products %}
+      {% for item in products %}
     <div class="row">
       <div class="col-md-4">
         <h2>{{ item.name }}</h2>
 {#        {{ item.photo }}#}
-        <a href="{% url 'product_page' item.id%}">
+        <a href="{{ item.get_absolute_url }}">
 
           <img src="{{  item.photo.url }}" width="180">
 

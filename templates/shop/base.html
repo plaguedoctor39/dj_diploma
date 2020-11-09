@@ -34,23 +34,23 @@
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Гаджеты</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-
-          <a class="dropdown-item" href="{% url 'main_page' %}category/">
-            Сматрфоны</a>
-
+            {% for item in categories %}
+          <a class="dropdown-item" href="{{ item.get_absolute_url }}">
+            {{ item.name }}</a>
+{% endfor %}
         </div>
       </li>
 
 
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'main_page' %}empty_section/">
+        <a class="nav-link" href="empty_section.html">
           Аксесcуары</a>
       </li>
 
 
     </ul>
     <a class="btn btn-outline-success my-2 my-sm-0" role="button"
-       href="{% url 'main_page' %}cart ">
+       href="{% url "cart:cart_detail" %}">
       Корзина</a>
 
     {% if request.user.is_authenticated %}
@@ -59,12 +59,12 @@
       Выйти</a>
     {% else %}
         <a class="btn btn-outline-success my-2 my-sm-0" role="button"
-       href="{% url 'main_page' %}login">
+       href="./login">
       Войти</a>
 
 
     <a class="btn btn-outline-success my-2 my-sm-0" role="button"
-       href="{% url 'main_page' %}register">
+       href="./register">
       Регистрация</a>
 
     {% endif %}
