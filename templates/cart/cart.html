@@ -30,9 +30,9 @@
             {% endwith %}
 {% endfor %}
     Итоговая сумма: {{ cart.get_total_price }}руб.
-      <form class="card p-2">
-        <button type="submit" class="btn btn-secondary">Заказать</button>
-      </form>
+      <a href="{% url "orders:order_create" %}" class="button">
+    Заказать
+</a>
     </div>
   </div>
 

@@ -22,6 +22,7 @@ from dj_diploma import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^orders/', include(('orders.urls', 'orders'), namespace='orders')),
     url(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
     url(r'^', include(('backend.urls', 'backend'), namespace='shop')),
     # path('', views.HomeListView.as_view(), name='main_page'),
