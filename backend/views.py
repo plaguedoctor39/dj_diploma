@@ -44,7 +44,6 @@ def product_detail(request, id, slug):
                    'cart_product_form': cart_product_form})
 
 
-
 # class HomeListView(ListView):
 #     model = Product
 #     template_name = 'index.html'
@@ -84,6 +83,4 @@ def product_detail(request, id, slug):
 
 
 def empty_page(request):
-    return render(request, 'empty_section.html')
-
-
+    return render(request, 'shop/empty_section.html')
