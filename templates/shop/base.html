@@ -55,16 +55,16 @@
 
     {% if request.user.is_authenticated %}
         <a class="btn btn-outline-success my-2 my-sm-0" role="button"
-       href="./logout">
+       href="{% url "login:logout" %}">
       Выйти</a>
     {% else %}
         <a class="btn btn-outline-success my-2 my-sm-0" role="button"
-       href="./login">
+       href="{% url "login:login_page" %}">
       Войти</a>
 
 
     <a class="btn btn-outline-success my-2 my-sm-0" role="button"
-       href="./register">
+       href="{% url "login:register_page" %}">
       Регистрация</a>
 
     {% endif %}
