@@ -83,13 +83,6 @@ def product_detail(request, id, slug):
 #         return super().form_valid(form)
 
 
-# def product_page(request):
-#     return render(request, 'phone.html')
-
-
-# def cart_page(request):
-#     return render(request, 'cart.html')
-
-
 def empty_page(request):
-    return render(request, 'shop/empty_section.html')
+    categories = Category.objects.all()
+    return render(request, 'shop/empty_section.html', {'categories': categories})
