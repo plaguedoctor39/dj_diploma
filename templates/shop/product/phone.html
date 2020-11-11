@@ -42,6 +42,7 @@
     </ul>
     <hr>
     {% endfor %}
+  {% if request.user.is_authenticated %}
     <div class="row">
       <div class="col-lg-6 col-md-8 col-sm-12">
         <h4>Оставте отзыв:</h4>
@@ -103,7 +104,9 @@
 {#        </form>#}
       </div>
     </div>
-
+      {% else %}
+      Чтобы оставить отзыв <a href="{% url "login:login_page" %}">войдите</a> или <a href="{% url "login:register_page" %}">зарегистрируйтесь</a>
+{% endif %}
   </div> <!-- /container -->
 
 

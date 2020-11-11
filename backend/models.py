@@ -50,7 +50,7 @@ class Product(models.Model):
 class Article(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название статьи')
     text = models.TextField(verbose_name='Текст статьи')
-    creation_date = models.DateTimeField(verbose_name='Дата создания')
+    creation_date = models.DateTimeField(auto_now=True, verbose_name='Дата создания')
     products = models.ManyToManyField('Product', related_name='articles', verbose_name='Товары')
 
     class Meta:

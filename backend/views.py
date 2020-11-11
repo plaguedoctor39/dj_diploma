@@ -7,7 +7,7 @@ from django.views.generic import CreateView, ListView, DetailView
 from django.views.generic.edit import FormMixin
 
 from backend.forms import CommentForm
-from backend.models import Product, Category
+from backend.models import Product, Category, Comments
 from cart.forms import CartAddProductForm
 
 
@@ -32,11 +32,20 @@ def product_list(request, category_slug=None):
 
 
 def product_detail(request, id, slug):
-    comment_form = CommentForm
     cart_product_form = CartAddProductForm()
     product = get_object_or_404(Product,
                                 id=id,
                                 slug=slug)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            author = request.user
+            text = comment_form.cleaned_data['text']
+            rating = comment_form.cleaned_data['rating']
+            comments = Comments.objects.create(author=author, text=text, rating=rating, product=product)
+            comment_form.save()
+    else:
+        comment_form = CommentForm
     return render(request,
                   'shop/product/phone.html',
                   {'product': product,
