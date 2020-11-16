@@ -33,6 +33,7 @@ def product_list(request, category_slug=None):
 
 def product_detail(request, id, slug):
     cart_product_form = CartAddProductForm()
+    categories = Category.objects.all()
     product = get_object_or_404(Product,
                                 id=id,
                                 slug=slug)
@@ -50,6 +51,7 @@ def product_detail(request, id, slug):
                   'shop/product/phone.html',
                   {'product': product,
                    'form': comment_form,
+                   'categories': categories,
                    'cart_product_form': cart_product_form})
 
 
