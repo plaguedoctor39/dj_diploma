@@ -2,8 +2,6 @@ from django.contrib import admin
 from backend.models import *
 
 
-# admin.site.unregister(User)
-
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'price']
@@ -20,13 +18,3 @@ class ArticleAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name',)}
-
-# @admin.register(Order)
-# class OrderAdmin(admin.ModelAdmin):
-#     list_display = ('user', 'display_products', 'creation_date')
-#     list_filter = ('creation_date',)
-
-
-# @admin.unregister(User)
-# class UserAdmin(admin.ModelAdmin):
-#     pass

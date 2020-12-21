@@ -6,10 +6,6 @@ from django.utils.text import slugify
 CHOICES_LIST = ((1, '1',), (2, '2',), (3, '3',), (4, '4',), (5, '5',))
 
 
-# class User(AbstractUser):
-#     pass
-
-
 class Category(models.Model):
     name = models.CharField(max_length=64, verbose_name='Название категории')
     slug = models.SlugField(unique=True, db_index=True)

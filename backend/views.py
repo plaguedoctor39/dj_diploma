@@ -55,36 +55,6 @@ def product_detail(request, id, slug):
                    'cart_product_form': cart_product_form})
 
 
-# class HomeListView(ListView):
-#     model = Product
-#     template_name = 'index.html'
-#     context_object_name = 'list_products'
-#
-#
-# class ProductView(FormMixin, DetailView):
-#     model = Product
-#     template_name = 'phone.html'
-#     context_object_name = 'get_product'
-#     form_class = CommentForm
-#
-#     def get_success_url(self):
-#         return reverse_lazy('product_page', kwargs={'pk': self.get_object().id})
-#
-#     def post(self, request, *args, **kwargs):
-#         form = self.get_form()
-#         if form.is_valid():
-#             return self.form_valid(form)
-#         else:
-#             return self.form_invalid(form)
-#
-#     def form_valid(self, form):
-#         self.object = form.save(commit=False)
-#         self.object.product = self.get_object()
-#         self.object.author = self.request.user
-#         self.object.save()
-#         return super().form_valid(form)
-
-
 def empty_page(request):
     categories = Category.objects.all()
     return render(request, 'shop/empty_section.html', {'categories': categories})

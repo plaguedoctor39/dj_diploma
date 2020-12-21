@@ -5,7 +5,6 @@ from backend.models import Product
 
 class Order(models.Model):
     first_name = models.CharField(max_length=50)
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
     address = models.CharField(max_length=250)
